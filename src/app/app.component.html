@@ -1,0 +1,86 @@
+
+  <!-- Navigation -->
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+    <div class="container">
+      <a class="navbar-brand" href="#">Pick My Grocery</a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarResponsive">
+        <ul class="navbar-nav ml-auto">
+          <li class="nav-item active">
+            <a class="nav-link" href="#">Home
+              <span class="sr-only">(current)</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">About</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">Services</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">Contact</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Header -->
+  <header>
+    <div class="container-fluid h-100 p-0 mb-3">
+          <img src="/assets/images/bannar.jpg" class="img-fluid" alt="">
+    </div>
+  </header>
+
+  <!-- Page Content -->
+  <div class="container">
+
+   
+
+    <div class="row">
+      <div class="col-md-4 mb-5" *ngFor="let product of productList">
+        <div class="card h-100">
+          <img class="card-img-top" src="{{product.imageUrl}}" alt="">
+          <div class="card-body">
+            <div class="container">
+              <div class="row">
+                <div class="col-xs-12">
+                  <h5 class="card-title">{{product.title}}</h5>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-lg-6 col-6">
+                  <h5 class="card-title" *ngIf="product.currentPrice">Rs.{{product.currentPrice}}</h5>
+                  <h5 class="card-title" *ngIf="!product.currentPrice">Rs.{{product.priceList[0].price}}</h5>
+                </div>
+                <div class="col-lg-6 col-6">
+                  <select name="priceList" (change)='changeUnit(product,$event)'>
+                    <option *ngFor="let item of product.priceList" [value]="item._id">{{item.unit}}</option>
+                   
+                  </select>
+                </div>
+              </div>
+            </div>
+            <p class="card-text">{{product.description}}</p>
+          </div>
+          <div class="card-footer">
+            <a href="#" class="btn btn-primary">Add Cart</a>
+          </div>
+        </div>
+      </div>
+
+    </div>
+    <!-- /.row -->
+
+  </div>
+  <!-- /.container -->
+
+  <!-- Footer -->
+  <footer class="py-5 bg-dark">
+    <div class="container">
+      <p class="m-0 text-center text-white">Copyright &copy; Your Website 2020</p>
+    </div>
+    <!-- /.container -->
+  </footer>
